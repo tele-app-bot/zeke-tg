@@ -17,7 +17,7 @@ function PayPalEmail() {
             <div>
                 <h1 className='text-white text-sm font-semibold'>Enter PayPal Email Address</h1>
             </div>
-            <input placeholder='useremail@paypal.com' className='bg-transparent placeholder-[#c8f73a46] text-[#C8F73A] text-2xl outline-none mt-5'/>
+            <input placeholder='useremail@paypal.com' type='email' className='bg-transparent placeholder-[#c8f73a46] text-[#C8F73A] text-2xl outline-none mt-5'/>
         </div>
         <div className='absolute flex bottom-10 w-full justify-center p-5'>
             <button className='bg-[#C8F73A] h-12 w-[90%] rounded-xl'>
