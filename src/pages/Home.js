@@ -41,7 +41,7 @@ function Home() {
       <div className='h-[10%]  p-5 mt-5 flex justify-center items-center'>
         <h1 className='text-[54px] text-[#000]  font-bold'>ZEKE</h1>
       </div>
-      <div className='text-center'>
+      <div className='text-center z-0 absolute w-full'>
         <ConnectButton
           client={client}
           chain={baseSepolia}
