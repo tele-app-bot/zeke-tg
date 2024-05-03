@@ -2,7 +2,14 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../assets/logo.png'
 
-
+const wallets = [
+  walletConnect(),
+  inAppWallet({
+    auth: {
+      options: ["email", "phone"],
+    },
+  }),
+];
 
 function Home() {
     const [amount, setAmount] = useState('')
