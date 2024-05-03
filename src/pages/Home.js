@@ -24,7 +24,6 @@ const wallets = [
       options: ["email", "phone"],
     },
   }),
-  createWallet("io.metamask")
 ];
 
 function Home() {
@@ -33,9 +32,10 @@ function Home() {
       <div className='h-[25%] flex justify-center items-center'>
         <img src={logo} className='w-28 aspect-square rounded-2xl' />
       </div>
-      <div>
+      <div className='text-center'>
         <ConnectButton
           client={client}
+          chain={baseSepolia}
           theme={"dark"}
           connectModal={{
             size: "compact",
