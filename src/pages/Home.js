@@ -1,96 +1,96 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
-  ConnectButton,
+    ConnectButton,
 } from "thirdweb/react";
 import { createThirdwebClient } from "thirdweb";
 import { baseSepolia } from "thirdweb/chains";
 import {
-  createWallet,
-  walletConnect,
-  inAppWallet,
-  preAuthenticate
+    createWallet,
+    walletConnect,
+    inAppWallet,
+    preAuthenticate
 } from "thirdweb/wallets";
 
 const client = createThirdwebClient({
-  clientId: "a02abdc106da3c1467ba518489b891dc",
+    clientId: "a02abdc106da3c1467ba518489b891dc",
 });
 
 const wallets = [
-  walletConnect(),
-  inAppWallet({
-    auth: {
-      options: ["email", "phone"],
-    },
-  }),
+    walletConnect(),
+    inAppWallet({
+        auth: {
+            options: ["email", "phone"],
+        },
+    }),
 ];
 
 function Home() {
-  const [amount, setAmount] = useState('')
+    const [amount, setAmount] = useState('')
 
-  const buttonPress = (e) => {
-    // console.log(e.target.textContent)
-    if (e.target.textContent !== 'Back') {
-      setAmount(amount + e.target.textContent)
-    } else {
-      setAmount(amount.slice(0, -1))
+    const buttonPress = (e) => {
+        // console.log(e.target.textContent)
+        if (e.target.textContent !== 'Back') {
+            setAmount(amount + e.target.textContent)
+        } else {
+            setAmount(amount.slice(0, -1))
+        }
     }
-  }
-  return (
-    <div className='bg-[#C8F73A] relative h-screen overflow-hidden'>
-      <div className='h-[10%]  p-5 mt-5 flex justify-center items-center'>
-        <h1 className='text-[54px] text-[#000]  font-bold'>ZEKE</h1>
-      </div>
-      <div className='text-center z-0 absolute w-full'>
-        <ConnectButton
-          client={client}
-          chain={baseSepolia}
-          theme={"dark"}
-          connectModal={{
-            size: "compact",
-            title: "Zeke",
-            titleIcon: "",
-            showThirdwebBranding: false,
-          }}
-          wallets={wallets}
-          accountAbstraction={{
-            chain: baseSepolia,
-            factoryAddress: "0xb26BE4505119107f9Bb6D4948360E4B7Dea50e29",
-            gasless: true,
-          }}
-        />
-      </div>
-      <div className='w-full h-[75%] text-md items-center flex flex-col justify-center'>
-        {/* <img src='https://cdn-icons-png.flaticon.com/512/1796/1796801.png' className='w-[50%] aspect-square rounded-2xl'/> */}
-        <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⣼⣿⣿⣿⣿⣿⣷⣾⣿⣿⣿⣿⣾⣿⣿</h1>
-        <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿</h1>
-        <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠛⠛⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿</h1>
-        <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⣿⣿⣿⢿⣿⡿⠋⠉⠁⠀⠙⢆⠀⠀⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿</h1>
-        <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢀⡽⠁⠀⠀⠀⠀⠀⠈⢳⡀⢼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿</h1>
-        <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠙⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿</h1>
-        <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⣿⣿⣿⣿⣿⣿⣿⢻⣿⣿⣿⣿⣿⣿⣿⣿</h1>
-        <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⡿⣿⣿⣏⣿⣿⣾⣿⣿⠘⣿⣿⣿⣿⣏</h1>
-        <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠀⠀⢹⡇⣸⣿⣿⡿⡟⠀⢹⣿⣤⣿⣿⡟⣿⣿</h1>
-        <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⣿⣿⣿⣿⣿⣿⣿⡄⠀⢸⣿⣿⣿⣿⠶⡿⠿⠟⣹⠴⠟⢹⠃⣿⡉</h1>
-        <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣏⣄⣀⣠⣭⣿⠿⣿⣿⣿⠇⠀⣸⠙⠻⠿⢏⣱⠇⠀⠉⠀⠀⠀⡌⠀⢋⡇</h1>
-        <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠦⠀⠈⠋⠀⠚⢉⠟⠁⠀⠀⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠃</h1>
-        <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠</h1>
-        <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣟⣻⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣶⣿</h1>
-        <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⢷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿</h1>
-        <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡾⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠺⢿⠿⠋⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⣿⣿</h1>
-        <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣻⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿</h1>
-        <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡜⢦⠀⠀⠀⠀⠀⢀⠤⠔⠚⠛⠉⠉⠉⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿</h1>
-        <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⣷⣄⠀⠀⠀⠁⠀⠀⠤⠤⠴⠚⠀⠀⠀⠀⣰⣿⣿⣿⣿⣿⣿</h1>
-        <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⡏⢱⡆⢹⣿⣿</h1>
-        <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⣀⠀⠀⠀⠀⠀⢀⣴⣿⣿⠋⣤⡟⠁⢸⣿⣿</h1>
-        <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣤⣤⣴⣿⣿⣿⣧⡾⠋⠀⠀⢸⣍⠻</h1>
-        <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⠀⠀⠀⠀⢸⣿⣿</h1>
-        <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⠿⠻⢿⣿⠟⣯⠉⠙⢧⠀⠀⠀⠀⠀⣿⣿</h1>
-        <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀⣠⠴⣿⠋⠀⠹⣇⠀⠀⡇⠀⠀⠀⠀⣻⣿</h1>
-        <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⢠⠞⠁⢠⡇⠈⡇⠀⢿⠀⠀⠸⠀⠀⠀⠀⠀⣿</h1>
-        <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⢠⠏⠀⠀⢸⡇⠀⡇⠀⢸⠀⠀⠀⡇⠀⠀⠀⠀⣿</h1>
-        <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣿⡇⢺⠀⠀⠀⢸⡇⠀⣹⠀⠈⡇⠀⠀⢸⡄⠀⠀⠀⣿</h1>
-        {/* <h1>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢧⣾⣵⣿⣿⣯⢿⣷⡀⠈⠿⣮⡳⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</h1>
+    return (
+        <div className='bg-[#C8F73A] relative h-screen overflow-hidden'>
+            <div className='h-[10%]  p-5 mt-5 flex justify-center items-center'>
+                <h1 className='text-[54px] text-[#000]  font-bold'>ZEKE</h1>
+            </div>
+            <div className='text-center z-0 absolute w-full'>
+                <ConnectButton
+                    client={client}
+                    chain={baseSepolia}
+                    theme={"dark"}
+                    connectModal={{
+                        size: "compact",
+                        title: "Zeke",
+                        titleIcon: "",
+                        showThirdwebBranding: false,
+                    }}
+                    wallets={wallets}
+                    accountAbstraction={{
+                        chain: baseSepolia,
+                        factoryAddress: "0xb26BE4505119107f9Bb6D4948360E4B7Dea50e29",
+                        gasless: true,
+                    }}
+                />
+            </div>
+            <div className='w-full h-[75%] text-md items-center flex flex-col justify-center'>
+                {/* <img src='https://cdn-icons-png.flaticon.com/512/1796/1796801.png' className='w-[50%] aspect-square rounded-2xl'/> */}
+                <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⣼⣿⣿⣿⣿⣿⣷⣾⣿⣿⣿⣿⣾⣿⣿</h1>
+                <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿</h1>
+                <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠛⠛⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿</h1>
+                <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⣿⣿⣿⢿⣿⡿⠋⠉⠁⠀⠙⢆⠀⠀⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿</h1>
+                <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢀⡽⠁⠀⠀⠀⠀⠀⠈⢳⡀⢼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿</h1>
+                <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠙⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿</h1>
+                <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢿⣿⣿⣿⣿⣿⣿⣿⢻⣿⣿⣿⣿⣿⣿⣿⣿</h1>
+                <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⡿⣿⣿⣏⣿⣿⣾⣿⣿⠘⣿⣿⣿⣿⣏</h1>
+                <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠀⠀⢹⡇⣸⣿⣿⡿⡟⠀⢹⣿⣤⣿⣿⡟⣿⣿</h1>
+                <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⣿⣿⣿⣿⣿⣿⣿⡄⠀⢸⣿⣿⣿⣿⠶⡿⠿⠟⣹⠴⠟⢹⠃⣿⡉</h1>
+                <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣏⣄⣀⣠⣭⣿⠿⣿⣿⣿⠇⠀⣸⠙⠻⠿⢏⣱⠇⠀⠉⠀⠀⠀⡌⠀⢋⡇</h1>
+                <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠦⠀⠈⠋⠀⠚⢉⠟⠁⠀⠀⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠃</h1>
+                <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠</h1>
+                <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣟⣻⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣶⣿</h1>
+                <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣯⢷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿</h1>
+                <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡾⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠺⢿⠿⠋⠀⠀⠀⠀⠀⠀⠀⠀⢰⣿⣿⣿</h1>
+                <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣻⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⣿⣿</h1>
+                <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡜⢦⠀⠀⠀⠀⠀⢀⠤⠔⠚⠛⠉⠉⠉⠀⠀⠀⠀⢠⣿⣿⣿⣿⣿</h1>
+                <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⣷⣄⠀⠀⠀⠁⠀⠀⠤⠤⠴⠚⠀⠀⠀⠀⣰⣿⣿⣿⣿⣿⣿</h1>
+                <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⡏⢱⡆⢹⣿⣿</h1>
+                <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⣀⠀⠀⠀⠀⠀⢀⣴⣿⣿⠋⣤⡟⠁⢸⣿⣿</h1>
+                <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣤⣤⣴⣿⣿⣿⣧⡾⠋⠀⠀⢸⣍⠻</h1>
+                <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⠀⠀⠀⠀⢸⣿⣿</h1>
+                <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⠿⠻⢿⣿⠟⣯⠉⠙⢧⠀⠀⠀⠀⠀⣿⣿</h1>
+                <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀⣠⠴⣿⠋⠀⠹⣇⠀⠀⡇⠀⠀⠀⠀⣻⣿</h1>
+                <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⢠⠞⠁⢠⡇⠈⡇⠀⢿⠀⠀⠸⠀⠀⠀⠀⠀⣿</h1>
+                <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⢠⠏⠀⠀⢸⡇⠀⡇⠀⢸⠀⠀⠀⡇⠀⠀⠀⠀⣿</h1>
+                <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⣿⡇⢺⠀⠀⠀⢸⡇⠀⣹⠀⠈⡇⠀⠀⢸⡄⠀⠀⠀⣿</h1>
+                {/* <h1>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢧⣾⣵⣿⣿⣯⢿⣷⡀⠈⠿⣮⡳⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</h1>
             <h1>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⠶⠤⣤⣀⡙⣿⣿⣿⣿⣯⣿⠷⠶⢦⠈⠙⢶⣝⠶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</h1>
             <h1>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡤⠶⢾⣯⡀⠀⠀⠀⠀⢩⣝⣿⣿⣿⣿⣤⣠⠤⠾⢲⠀⠀⠈⢻⣽⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</h1>
             <h1>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡾⠋⠹⣆⣆⠟⠆⠀⢀⣠⣴⣏⣿⣿⣿⣿⣿⣥⣀⣴⡲⢾⡧⣤⡀⠘⡏⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</h1>
@@ -134,19 +134,19 @@ function Home() {
             <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀⠀⠀⠀⢣⠸⣿⣿⣿⡾⣿⣿⣿⣿⣿⣿</h1>
             <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠸⡂⣿⣿⣿⣿⡿⣿⣿⣿⣿⣿</h1>
             <h1>⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⡇⢸⣿⣿⣿⣿⣹⣿⣿⣿⣿</h1> */}
-      </div>
+            </div>
 
-      <div className='absolute bottom-0 w-full '>
-        <div className='bottom-10 flex absolute justify-center p-5 w-full'>
-          <button className='bg-[#000] text-[#C8F73A] h-12 w-[90%] rounded-xl'>
-            <Link to='/paypalemail'>
-              Begin
-            </Link>
-          </button>
+            <div className='absolute bottom-0 w-full '>
+                <div className='bottom-10 flex absolute justify-center p-5 w-full'>
+                    <Link to='/paypalemail'>
+                        <button className='bg-[#000] text-[#C8F73A] h-12 w-[80vw] rounded-xl'>
+                            Begin
+                        </button>
+                    </Link>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  )
+    )
 }
 
 export default Home
