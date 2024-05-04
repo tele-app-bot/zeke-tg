@@ -19,29 +19,28 @@ import Receiver from './pages/Receiver';
 import Amount from './pages/Amount';
 
 function App() {
-  return (
-    <ThirdwebProvider>
-      <Router>
-        <Routes>
-          <Route path="/connect" element={<Connect />} />
-          <Route path="/paypal" element={<PayPal />} />
-          <Route path="/receiver" element={<Receiver />} />
-          <Route path="/amount" element={<Amount />} />
+    return (
+        <ThirdwebProvider>
+            <Router>
+                <Routes>
+                    <Route path="/connect" element={<Connect />} />
+                    <Route path="/paypal" element={<PayPal />} />
+                    <Route path="/receiver" element={<Receiver />} />
+                    <Route path="/amount" element={<Amount />} />
+                    <Route path="/checkout" element={<Checkout />} />
 
-          <Route path="/" element={<Home />} />
-          <Route path="/walletaddress" element={<WalletAddress />} />
-          <Route path="/paypalemail" element={<PayPalEmail />} />
-          <Route path="/continue-one" element={<ContinueOne />} />
-          <Route path="/enteramount" element={<EnterAmount />} />
-          <Route path="/review" element={<Review />} />
-          <Route path="/confirm" element={<ConfirmPayment />} />
-          <Route path="/successful" element={<Successful />} />
-
-          <Route path="/checkout" element={<Checkout />} />
-        </Routes>
-      </Router>
-    </ThirdwebProvider>
-  );
+                    <Route path="/" element={<Home />} />
+                    <Route path="/walletaddress" element={<WalletAddress />} />
+                    <Route path="/paypalemail" element={<PayPalEmail />} />
+                    <Route path="/continue-one" element={<ContinueOne />} />
+                    <Route path="/enteramount" element={<EnterAmount />} />
+                    <Route path="/review" element={<Review />} />
+                    <Route path="/confirm" element={<ConfirmPayment />} />
+                    <Route path="/successful" element={<Successful />} />
+                </Routes>
+            </Router>
+        </ThirdwebProvider>
+    );
 }
 
 export default App;

@@ -3,31 +3,22 @@ import { Link, useNavigate } from 'react-router-dom'
 import Layout from '../components/Layout';
 import ThirdWebConnect from '../components/ThirdWebConnect';
 import FooterButton from '../components/FooterButton';
+import { cn } from "../utils";
 
-const availableTokens = [
-    {
-        name: "USDC",
-        symbol: "USDC",
-        icon: "tokens/usdc.svg"
-    },
-    {
-        name: "Tether",
-        symbol: "USDT",
-        icon: "tokens/usdt.svg"
-    },
-    {
-        name: "Dai",
-        symbol: "DAI",
-        icon: "tokens/dai.svg"
-    },
-
+const amountTags = [
+    100,
+    250,
+    500
 ];
 
 export default function Amount() {
+    const [amount, setAmount] = useState(0);
+    const [selectedTag, setSelectedTag] = useState(-1);
+
     const navigate = useNavigate();
 
     const handleNext = () => {
-        
+        navigate("/checkout");
     };
 
     return (
@@ -48,19 +39,44 @@ export default function Amount() {
                             Enter amount
                         </div>
                     </div>
-                    <div>
-                        <input
-                            placeholder='100'
-                            type='number'
-                            className='bg-transparent border-none outline-none text-[#7cf31b] text-3xl w-full'
-                        />
-                        <select>
-                            {availableTokens.map((token) => {
-                                <div>
-                                    
-                                </div>
-                            })}
-                        </select>
+                    <div
+                        className="flex flex-row"
+                    >
+                        <div>
+                            <input
+                                value={amount}
+                                onChange={(e)=>{
+                                    setAmount(e.currentTarget.value);
+                                    setSelectedTag(-1);
+                                }}
+                                type='number'
+                                className='bg-transparent border-none outline-none text-[#7cf31b] text-3xl w-full'
+                            />
+                        </div>
+                        <div
+                            className="text-white text-center text-3xl"
+                        >
+                            USDC
+                        </div>
+                    </div>
+                    <div
+                        className="flex flex-row space-x-2"
+                    >
+                        {amountTags.map((value, i) => (
+                            <div
+                                key={i}
+                                className={cn(
+                                    'px-2 w-fit h-fit border rounded-full border-[#7cf31b] text-center',
+                                    i === selectedTag ? "bg-[#7cf31b] text-black" : "text-[#7cf31b]"
+                                )}
+                                onClick={()=>{
+                                    setAmount(value);
+                                    setSelectedTag(i);
+                                }}                            
+                            >
+                                {value}
+                            </div>
+                        ))}
                     </div>
                 </div>
                 <div
