@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import Layout from '../components/Layout';
 import ThirdWebConnect from '../components/ThirdWebConnect';
 import FooterButton from '../components/FooterButton';
@@ -12,13 +12,17 @@ const amountTags = [
 ];
 
 export default function Amount() {
+    const [searchParams] = useSearchParams();
+    const paypal = searchParams.get("paypal");
+    const receiver = searchParams.get("receiver");
+
     const [amount, setAmount] = useState(0);
     const [selectedTag, setSelectedTag] = useState(-1);
 
     const navigate = useNavigate();
 
     const handleNext = () => {
-        navigate("/checkout");
+        navigate("/checkout?paypal=" + paypal + "&receiver=" + receiver + "&amount=" + amount.toString());
     };
 
     return (

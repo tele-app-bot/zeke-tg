@@ -6,10 +6,12 @@ import FooterButton from '../components/FooterButton';
 
 
 export default function PayPal() {
+    const [paypal, setPayPal] = useState("");
+
     const navigate = useNavigate();
 
     const handleNext = () => {
-        navigate("/receiver");
+        navigate("/receiver?paypal=" + paypal);
     };
 
     return (
@@ -32,6 +34,8 @@ export default function PayPal() {
                     </div>
                     <div>
                         <input
+                            value={paypal}
+                            onChange={(e) => setPayPal(e.currentTarget.value)}
                             placeholder='yourname@paypal.com'
                             type='email'
                             className='w-full bg-transparent border-none outline-none text-[#7cf31b] text-2xl'

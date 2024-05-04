@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import Layout from '../components/Layout';
 import ThirdWebConnect from '../components/ThirdWebConnect';
 import FooterButton from '../components/FooterButton';
@@ -7,6 +7,9 @@ import { useActiveAccount } from 'thirdweb/react';
 
 
 export default function Receiver() {
+    const [searchParams] = useSearchParams();
+    const paypal = searchParams.get("paypal");
+
     const [receiver, setReceiver] = useState("");
 
     const activeAccount = useActiveAccount();
@@ -15,7 +18,7 @@ export default function Receiver() {
     const navigate = useNavigate();
 
     const handleNext = () => {
-        navigate("/amount");
+        navigate("/amount?paypal=" + paypal + "&receiver=" + receiver);
     };
 
     return (
@@ -40,7 +43,7 @@ export default function Receiver() {
                         <input
                             value={receiver}
                             onChange={(event) => setReceiver(event.currentTarget.value)}
-                            placeholder='0x012..abcd'
+                            placeholder='0x012...abcd'
                             className='w-full bg-transparent border-none outline-none text-[#7cf31b] text-2xl overflow-ellipsis'
                         />
                     </div>

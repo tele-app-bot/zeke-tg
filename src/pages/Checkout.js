@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import Layout from '../components/Layout';
 import ThirdWebConnect from '../components/ThirdWebConnect';
 import FooterButton from '../components/FooterButton';
 import { cn } from "../utils";
-import { useActiveAccount, useActiveWalletChain } from 'thirdweb/react';
-import { getContract, prepareContractCall, sendTransaction } from 'thirdweb';
+import { useActiveAccount, useSendTransaction } from 'thirdweb/react';
+import { createThirdwebClient, getContract, prepareContractCall, sendTransaction } from 'thirdweb';
+import { baseSepolia } from 'thirdweb/chains';
 
 const progressLabels = [
     {
@@ -20,8 +21,8 @@ const progressLabels = [
     },
     {
         upcoming: "Send fiat",
-        current: "Waiting for fiat",
-        done: "Fiat received"
+        current: "Waiting for your payment",
+        done: "Payment received"
     },
     {
         upcoming: "Fulfill order",
@@ -30,7 +31,22 @@ const progressLabels = [
     }
 ];
 
+const client = createThirdwebClient({
+    clientId: "a02abdc106da3c1467ba518489b891dc",
+});
+
+const rampContract = getContract({
+    client: client,
+    chain: baseSepolia,
+    address: "0xcc6F072eC6ED45Dbdb722728d0905A0930F63889"
+});
+
 export default function Checkout() {
+    const [searchParams] = useSearchParams();
+    const paypal = searchParams.get("paypal");
+    const receiver = searchParams.get("receiver");
+    const amount = searchParams.get("amount");
+
     const [progressIndex, setProgressIndex] = useState(-1);
 
     const progressStyle = (progress, index) => {
@@ -57,30 +73,35 @@ export default function Checkout() {
         };
     };
 
-    const rampContract = getContract({
-        client: "a02abdc106da3c1467ba518489b891dc",
-        chain: useActiveWalletChain(),
-        address: "0xcc6F072eC6ED45Dbdb722728d0905A0930F63889"
-    });
+    const activeAccount = useActiveAccount();
 
     const handleSubmit = async () => {
         setProgressIndex(progressIndex + 1);
 
         const addOrderTxn = prepareContractCall({
-            rampContract,
+            contract: rampContract,
             method: "function addOrder(address _onramper, address _token, uint256 _amount, int256 _minFiatRate, uint64 _dstChainSelector)",
             params: [
-                "receiver",
-                "token",
+                "0x69051293E342942E7bA168cE9522aBBC7a259A63",
+                "0x036CbD53842c5426634e7929541eC2318f3dCF7e",
                 100,
-                1,
+                10 ** 8,
                 10344971235874465080
             ],
             value: 0
         })
-        const addOrderHash = await sendTransaction(addOrderTxn);
+        await sendTransaction({
+            account: activeAccount,
+            transaction: addOrderTxn
+        });
 
         setProgressIndex(progressIndex + 1);
+
+        // 2. Listen for order commitment
+
+        // 3. Wait for paypal
+
+        // 4. Listen for order fulfillment
     };
 
     return (
@@ -114,7 +135,7 @@ export default function Checkout() {
                             <div
                                 className='text-[#7cf31b] text-xl'
                             >
-                                youruser@paypal.com
+                                {paypal}
                             </div>
                         </div>
                         <div>
@@ -126,7 +147,7 @@ export default function Checkout() {
                             <div
                                 className='text-[#7cf31b] text-xl'
                             >
-                                0x6905...9A63
+                                {receiver.slice(0, 6) + "..." + receiver.slice(38)}
                             </div>
                         </div>
                         <div>
@@ -138,7 +159,7 @@ export default function Checkout() {
                             <div
                                 className='text-[#7cf31b] text-xl'
                             >
-                                250 USDC
+                                {amount + " USDC"}
                             </div>
                         </div>
                     </div>
@@ -177,7 +198,7 @@ export default function Checkout() {
                 >
                     <FooterButton
                         label="Submit"
-                        onClick={()=>setProgressIndex(progressIndex + 1)}
+                        onClick={handleSubmit}
                     />
                 </div>
             </Layout>
