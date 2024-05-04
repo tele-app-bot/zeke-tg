@@ -1,7 +1,7 @@
 export default function Layout({ children, title = false }) {
     return (
         <div
-            className="bg-[#7cf31b] w-screen h-screen absolute"
+            className="bg-[#ABEF09] w-screen h-screen absolute overflow-hidden"
         >
             <div
                 className="bg-[#000000] w-full h-[95vh] bottom-0 rounded-t-3xl absolute"
@@ -12,9 +12,17 @@ export default function Layout({ children, title = false }) {
                         hidden={!title}
                     >
                         <div
-                            className="text-[#7cf31b] text-[3rem] font-bold"
+                            className="text-[#ABEF09] text-6xl mt-48"
                         >
                             ZEKE
+                        </div>
+                        <div
+                            className="-mt-14"
+                        >
+                            <img
+                                src="portal.png"
+                                className=""
+                            />
                         </div>
                     </div>
                     <div

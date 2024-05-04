@@ -54,7 +54,7 @@ export default function Amount() {
                                     setSelectedTag(-1);
                                 }}
                                 type='number'
-                                className='bg-transparent border-none outline-none text-[#7cf31b] text-3xl w-full'
+                                className='bg-transparent border-none outline-none text-[#ABEF09] text-3xl w-full'
                             />
                         </div>
                         <div
@@ -70,8 +70,8 @@ export default function Amount() {
                             <div
                                 key={i}
                                 className={cn(
-                                    'px-2 w-fit h-fit border rounded-full border-[#7cf31b] text-center',
-                                    i === selectedTag ? "bg-[#7cf31b] text-black" : "text-[#7cf31b]"
+                                    'px-2 w-fit h-fit border rounded-full border-[#ABEF09] text-center',
+                                    i === selectedTag ? "bg-[#ABEF09] text-black" : "text-[#ABEF09]"
                                 )}
                                 onClick={()=>{
                                     setAmount(value);

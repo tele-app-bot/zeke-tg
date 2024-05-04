@@ -17,6 +17,7 @@ import Connect from './pages/Connect';
 import PayPal from './pages/PayPal';
 import Receiver from './pages/Receiver';
 import Amount from './pages/Amount';
+import Success from './pages/Success';
 
 function App() {
     return (
@@ -28,6 +29,7 @@ function App() {
                     <Route path="/receiver" element={<Receiver />} />
                     <Route path="/amount" element={<Amount />} />
                     <Route path="/checkout" element={<Checkout />} />
+                    <Route path="/success" element={<Success />} />
 
                     <Route path="/" element={<Home />} />
                     <Route path="/walletaddress" element={<WalletAddress />} />

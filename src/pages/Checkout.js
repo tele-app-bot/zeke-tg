@@ -4,7 +4,7 @@ import Layout from '../components/Layout';
 import ThirdWebConnect from '../components/ThirdWebConnect';
 import FooterButton from '../components/FooterButton';
 import { cn } from "../utils";
-import { useActiveAccount, useSendTransaction } from 'thirdweb/react';
+import { useActiveAccount, useContractEvents, useSendTransaction } from 'thirdweb/react';
 import { createThirdwebClient, getContract, prepareContractCall, sendTransaction } from 'thirdweb';
 import { baseSepolia } from 'thirdweb/chains';
 
@@ -47,6 +47,8 @@ export default function Checkout() {
     const receiver = searchParams.get("receiver");
     const amount = searchParams.get("amount");
 
+    const navigate = useNavigate();
+
     const [progressIndex, setProgressIndex] = useState(-1);
 
     const progressStyle = (progress, index) => {
@@ -68,16 +70,39 @@ export default function Checkout() {
 
         return {
             label: progress.done,
-            textStyle: "text-[#7cf31b] text-lg",
-            dotStyle: "bg-[#7cf31b] w-6 h-6"
+            textStyle: "text-[#ABEF09] text-lg",
+            dotStyle: "bg-[#ABEF09] w-6 h-6"
         };
     };
 
     const activeAccount = useActiveAccount();
 
-    const handleSubmit = async () => {
-        setProgressIndex(progressIndex + 1);
+    const sleep = ms => new Promise(r => setTimeout(r, ms));
 
+    const handleSubmit = async () => {
+        setProgressIndex(0);
+
+        await sleep(1000);
+
+        setProgressIndex(1);
+
+        await sleep(1000);
+
+        setProgressIndex(2);
+
+        await sleep(1000);
+
+        setProgressIndex(3);
+
+        await sleep(1000);
+
+        setProgressIndex(4);
+
+        await sleep(1000);
+
+        navigate("/success?receiver=" + receiver + "&amount=" + amount);
+
+        /*
         const addOrderTxn = prepareContractCall({
             contract: rampContract,
             method: "function addOrder(address _onramper, address _token, uint256 _amount, int256 _minFiatRate, uint64 _dstChainSelector)",
@@ -96,6 +121,7 @@ export default function Checkout() {
         });
 
         setProgressIndex(progressIndex + 1);
+        */
 
         // 2. Listen for order commitment
 
@@ -133,7 +159,7 @@ export default function Checkout() {
                                 PayPal
                             </div>
                             <div
-                                className='text-[#7cf31b] text-xl'
+                                className='text-[#ABEF09] text-xl'
                             >
                                 {paypal}
                             </div>
@@ -145,7 +171,7 @@ export default function Checkout() {
                                 Receiver
                             </div>
                             <div
-                                className='text-[#7cf31b] text-xl'
+                                className='text-[#ABEF09] text-xl'
                             >
                                 {receiver.slice(0, 6) + "..." + receiver.slice(38)}
                             </div>
@@ -157,7 +183,7 @@ export default function Checkout() {
                                 Amount
                             </div>
                             <div
-                                className='text-[#7cf31b] text-xl'
+                                className='text-[#ABEF09] text-xl'
                             >
                                 {amount + " USDC"}
                             </div>
@@ -197,8 +223,9 @@ export default function Checkout() {
                     className='w-full h-fit text-center fixed bottom-0'
                 >
                     <FooterButton
-                        label="Submit"
+                        label={progressIndex < 0 ? "Submit" : "Order in progress"}
                         onClick={handleSubmit}
+                        disabled={progressIndex >= 0}
                     />
                 </div>
             </Layout>

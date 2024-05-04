@@ -43,7 +43,7 @@ export default function ThirdWebConnect({ onConnect }) {
             connectButton={{
                 label: "Connect",
                 style: {
-                    backgroundColor: "#7cf31b",
+                    backgroundColor: "#ABEF09",
                     width: "90%",
                     height: "3rem",
                     borderRadius: "0.5rem",

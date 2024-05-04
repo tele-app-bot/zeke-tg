@@ -44,12 +44,12 @@ export default function Receiver() {
                             value={receiver}
                             onChange={(event) => setReceiver(event.currentTarget.value)}
                             placeholder='0x012...abcd'
-                            className='w-full bg-transparent border-none outline-none text-[#7cf31b] text-2xl overflow-ellipsis'
+                            className='w-full bg-transparent border-none outline-none text-[#ABEF09] text-2xl overflow-ellipsis'
                         />
                     </div>
                     <div>
                         <div
-                            className='text-[#7cf31b8e]'
+                            className='text-[#ABEF09]'
                             onClick={handleConnectedWallet}
                         >
                             Send to connected wallet

@@ -38,7 +38,7 @@ export default function PayPal() {
                             onChange={(e) => setPayPal(e.currentTarget.value)}
                             placeholder='yourname@paypal.com'
                             type='email'
-                            className='w-full bg-transparent border-none outline-none text-[#7cf31b] text-2xl'
+                            className='w-full bg-transparent border-none outline-none text-[#ABEF09] text-2xl'
                         />
                     </div>
                 </div>
