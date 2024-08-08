@@ -13,3 +13,6 @@ To install Zeke Telegram Bot, follow these steps:
 2. Install dependencies: `npm install`
 3. Configure the bot by editing the `bot.js` file with your Telegram API token and web app deployment URL.
 4. Run the bot: `node bot.js`
+
+
+#Close
